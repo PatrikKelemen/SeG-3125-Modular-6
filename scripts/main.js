@@ -1,94 +1,174 @@
+function validatePhone(txtPhone) {
+    var a = document.getElementById(txtPhone).value;
+   
+    var filter = /^(\([-+]?[0-9]+)\)[0-9]+$/;
+    if (filter.test(a)) {
+        return true;
+    }
+    else {
+        return false;
+    }
+}
 
-// This function is called when any of the tab is clicked
-// It is adapted from https://www.w3schools.com/howto/howto_js_tabs.asp
+function validateCVV(txtCVV) {
+    var a = document.getElementById(txtCVV).value;
+    
+    var filter = /^[-+]?[0-9][0-9][0-9]$/;
+    if (filter.test(a)) {
+        return true;
+    }
+    else {
+        return false;
+    }
+}
 
-function openInfo(evt, tabName) {
+function validateCard(txtCardNumber) {
+    var a = document.getElementById(txtCardNumber).value;
+    
+    var filter = /^[-+]?[0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9]$/;
+    if (filter.test(a)) {
+        return true;
+    }
+    else {
+        return false;
+    }
+}
 
-	// Get all elements with class="tabcontent" and hide them
-	tabcontent = document.getElementsByClassName("tabcontent");
-	for (i = 0; i < tabcontent.length; i++) {
-		tabcontent[i].style.display = "none";
-	}
-
-	// Get all elements with class="tablinks" and remove the class "active"
-	tablinks = document.getElementsByClassName("tablinks");
-	for (i = 0; i < tablinks.length; i++) {
-		tablinks[i].className = tablinks[i].className.replace(" active", "");
-	}
-
-	// Show the current tab, and add an "active" class to the button that opened the tab
-	document.getElementById(tabName).style.display = "block";
-	evt.currentTarget.className += " active";
-
+function validatePostalCode(txtPostalCode) {
+    var a = document.getElementById(txtCardNumber).value;
+    
+var filter = /^[-+]?[a-z][0-9][a-z][0-9][a-z][0-9]$/;
+    if (filter.test(a)) {
+        return true;
+    }
+    else {
+        return false;
+    }
 }
 
 
-	
-// generate a checkbox list from a list of products
-// it makes each product name as the label for the checkbos
+var unavailableDates = ["06/29/2020","07/07/2020","07/10/2020"];
+const setDateFormat = "mm/dd/yy";
 
-function populateListProductChoices(slct1, slct2) {
-    var s1 = document.getElementById(slct1);
-    var s2 = document.getElementById(slct2);
-	
-	// s2 represents the <div> in the Products tab, which shows the product list, so we first set it empty
-    s2.innerHTML = "";
-		
-	// obtain a reduced list of products based on restrictions
-    var optionArray = restrictListProducts(products, s1.value);
-
-	// for each item in the array, create a checkbox element, each containing information such as:
-	// <input type="checkbox" name="product" value="Bread">
-	// <label for="Bread">Bread/label><br>
-		
-	for (i = 0; i < optionArray.length; i++) {
-			
-		var productName = optionArray[i];
-		// create the checkbox and add in HTML DOM
-		var checkbox = document.createElement("input");
-		checkbox.type = "checkbox";
-		checkbox.name = "product";
-		checkbox.value = productName;
-		s2.appendChild(checkbox);
-		
-		// create a label for the checkbox, and also add in HTML DOM
-		var label = document.createElement('label')
-		label.htmlFor = productName;
-		label.appendChild(document.createTextNode(productName));
-		s2.appendChild(label);
-		
-		// create a breakline node and add in HTML DOM
-		s2.appendChild(document.createElement("br"));    
-	}
-}
-	
-// This function is called when the "Add selected items to cart" button in clicked
-// The purpose is to build the HTML to be displayed (a Paragraph) 
-// We build a paragraph to contain the list of selected items, and the total price
-
-function selectedItems(){
-	
-	var ele = document.getElementsByName("product");
-	var chosenProducts = [];
-	
-	var c = document.getElementById('displayCart');
-	c.innerHTML = "";
-	
-	// build list of selected item
-	var para = document.createElement("P");
-	para.innerHTML = "You selected : ";
-	para.appendChild(document.createElement("br"));
-	for (i = 0; i < ele.length; i++) { 
-		if (ele[i].checked) {
-			para.appendChild(document.createTextNode(ele[i].value));
-			para.appendChild(document.createElement("br"));
-			chosenProducts.push(ele[i].value);
-		}
-	}
-		
-	// add paragraph and total price
-	c.appendChild(para);
-	c.appendChild(document.createTextNode("Total Price is " + getTotalPrice(chosenProducts)));
-		
+function disableDates(date) {
+    // Sunday is Day 0, disable all Sundays
+    if (date.getDay() === 0 || date.getDay() === 6 )
+        return [false];
+    var string = jQuery.datepicker.formatDate(setDateFormat, date);
+    return [ unavailableDates.indexOf(string) === -1 ]
 }
 
+
+function empty(inputtx) 
+   {
+	   var a = document.getElementById(inputtx).value;
+     if (a.length == 0)
+      { 	
+         return true; 
+      }  	
+      return false; 
+    } 
+
+// HERE, JQuery "LISTENING" starts
+$(document).ready(function(){
+
+    // phone validation, it calls validatePhone
+    // and also some feedback as an Alert + putting a value in the input that shows the format required
+    // the "addClass" will use the class "error" defined in style.css and add it to the phone input
+    // The "error" class in style.css defines yellow background and red foreground
+    $("#phone").on("change", function(){
+        if (!validatePhone("phone")){
+            alert("Wrong format for phone");
+            $("#phone").val("(xxx)xxxxxxx");
+            $("#phone").addClass("error");
+        }
+        else {
+            $("#phone").removeClass("error");
+        }
+    });
+
+    // To change the style of the calender, look in jqueryui.com, under Themes, in the ThemeRoller Gallery
+    // You can try different themes (the names are under the calendars) / This is Excite Bike
+    // To use a different theme you must include its css in your HTML file.
+    // The one I included in my HTML is the Excite Bike, but you can try others
+
+    // Also, here is a good tutorial for playing with the datepicker in https://webkul.com/blog/jquery-datepicker/
+    // Datepicker is also documented as one of the widgets here: https://api.jqueryui.com/category/widgets/
+    $( "#dateInput" ).datepicker(
+        {
+            dateFormat: setDateFormat,
+            // no calendar before June 1rst 2020
+            minDate: new Date('06/01/2020'),
+            maxDate: '+4M',
+            // used to disable some dates
+            beforeShowDay: $.datepicker.noWeekends,
+            beforeShowDay: disableDates
+        }
+    );
+	
+	$("#cnum").on("change", function(){
+        if (!validateCard("cnum")){
+            alert("Wrong format for Card");
+            $("#cnum").val("xxxxxxxxxxxxxxxx");
+            $("#cnum").addClass("error");
+        }
+        else {
+            $("#cnum").removeClass("error");
+        }
+    });
+	
+	$("#cvv").on("change", function(){
+        if (!validateCVV("cvv")){
+            alert("Wrong format for CVV");
+            $("#cvv").val("xxx");
+            $("#cvv").addClass("error");
+        }
+        else {
+            $("#cvv").removeClass("error");
+        }
+    });
+	
+	$("#bookBtn").click(function(){
+       
+
+	   if (!validateCVV("cvv") || $("#cvv").hasClass("error") || !validateCard("cnum") || $("#cnum").hasClass("error")  ){
+            alert("Error with Card");
+    }
+		 else if(empty("inputName")) { alert("Please fill in your name ");}
+		 else if(empty("dateInput")) { alert("Please fill in the Date ");}
+		 else if(empty("expdate")) { alert("Please fill in the Experation Date  ");}
+		else if(empty("pstcode")) { alert("Please fill in the Postal Code ");} 
+        else {
+			 alert("booking complete");
+			 $("#exampleModal").modal('hide');
+        }
+    });
+	
+	$("#cnum").on("mouseenter", function(){
+        $("#cnum").addClass("showInput");
+    });
+
+    $("#cnum").on("mouseleave", function(){
+        $("#cnum").removeClass("showInput");
+    });
+	
+	$("#debit").tooltip({
+        classes: {
+            "ui-tooltip": "highlight"
+        }
+    });
+	
+	/*$("#pstcode").on("change", function(){
+        if (!validateCVV("pstcode")){
+            alert("Wrong format for Postal code");
+            $("#pstcode").val("x0x0x0");
+            $("#pstcode").addClass("error");
+        }
+        else {
+            $("#pstcode").removeClass("error");
+        }
+    });*/
+
+
+
+});

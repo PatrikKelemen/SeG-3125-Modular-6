@@ -12,45 +12,40 @@ https://getbootstrap.com/docs/5.0/getting-started/introduction/
     <link href="styles/styles.css" rel="stylesheet" type="text/css">
     <title>Module 4 Lab</title>
 	
-	<!--<script src="jquery-3.5.1.min.js"></script> -->
+	
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+	
+	<link href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.9.2/themes/excite-bike/jquery-ui.css" rel="stylesheet" type="text/css">
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
+    
+    <script src="scripts/main.js"></script>
 	
 	
 </head>
 <body>
-<!--
-I store all of the page information in a container,
-Many websites will use what is called CSS grid layouts, where you will have a header, body, footer and both sides used for ads or other information
--->
+
 <div class = "container-lg">
 
     <div class="alert alert-danger alert-dismissible fade show" role="alert">
         <strong>Alert: </strong> Due to covid-19 mesures when are only doing appointment only
         <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
     </div>
-    <!-- Alerts are an easy way to grab the users attention, this page goes into more detail
-    https://getbootstrap.com/docs/5.0/components/alerts/
-    -->
-    <!--
-    Most websites now feature what is called a NavBar.
-    The example I give is quite simple with a logo and some text, but you can use it for many navigational patterns
-    https://getbootstrap.com/docs/5.0/components/navbar/
-    -->
+   
 
     <nav class="navbar bg-dark text-white p-3 my-3 ">
-        <h1><img src="images/company_logo.png" width="130" height="130"> Welcome to my Physiotherapy Clinic</h1>
+        <h1><img src="images/logo.jpg" width="130" height="130"> GetWell Clinic</h1>
     </nav>
 
     <div class=" p-3 my-3 border bg-light">
         <h1 class=""> About us</h1>
-        <p class="p-4 my-3" style="font-size: 25px">We are a small clinic located in Bellville Ontario</p>
+        <p class="p-4 my-3" style="font-size: 25px">We are a small clinic located in 15 Front St. Bellville Ontario</p>
         <p style="font-size: 25px; padding-left: 1.5rem">We are dedicated to providing the <strong>best</strong> care to our customers</p>
     </div>
-    <!--
-    Tables are one of many ways to organize information easily.
-    It is a good way to list of prices, or services in a business website
-    https://getbootstrap.com/docs/5.0/content/tables/
-    -->
+    
+	
+	<h1><img src="images/iconService.jfif" width="75" height="75"> Services</h1>
     <table class="table table-info table-hover">
         <thead>
             <tr>
@@ -99,159 +94,101 @@ Many websites will use what is called CSS grid layouts, where you will have a he
     </table>
     
   
-<!--
-    <h1>Button States</h1>
-    
-    Buttons can be used for submitting forms, triggering events among many other things.
-    https://getbootstrap.com/docs/5.0/components/buttons/
+
+
    
-
-    <button type="button" class="btn btn-warning">Primary Button</button>
-    <button type="button" class="btn btn-warning active">Active Button</button>
-    <button type="button" class="btn btn-warning" disabled>Disabled Button</button>
- 
-    <h1>Modal Example</h1>
-
-    <!-- Button trigger modal
-    We use the same button code from above, but now we can trigger a modal to appear.
-    The bootstrap tutorial includes many different types of modals that you can explore
-    https://getbootstrap.com/docs/5.0/components/modal/
-    
-    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
-        Launch demo modal
-    </button>
-
     <!-- Modal -->
-    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" data-bs-backdrop="static">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title" id="exampleModalLabel">Book Appointment</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
+				
+				
                 <div class="modal-body">
-                    Address 
-					15 Front St.
-					
+                   <h3><img src="images/iconGPS.jfif" width="40" height="50"> Address: 15 Front St.</h3> 
+					<div class="row g-3">
 					<div class="col-md-6">
+					
                     <p>Date: <input type="text" id="dateInput"></p></div>
   <div class="col-md-6">
     <p>Phone Number <input value="(xxx)xxxxxxx" type="text" id="phone"></p>
-  </div>
+  </div></div>
   
   <div class="col-12">
-    <label for="inputAddress" class="form-label">Address</label>
-    <input type="text" class="form-control" id="inputAddress" placeholder="1234 Main St">
+    <label for="inputAddress" class="form-label">Name</label>
+    <input type="text" class="form-control" id="inputName" >
   </div>
-    <!-- 
-  <div class="col-md-6">
-    <label for="inputCity" class="form-label">City</label>
-    <input type="text" class="form-control" id="inputCity">
-  
-    <label for="inputState" class="form-label">State</label>
+  <div class="col-md-12">
+    <label for="inputState" class="form-label">Doctor</label>
     <select id="inputState" class="form-select">
-      <option selected>Choose...</option>
-      <option>Ontario</option>
+      <option selected>Any...</option>
+      <option>Jane</option>
+	  <option>Smith</option>
+	  <option>Sally</option>
     </select>
+  </div>
+  <hr>
+  <img src="images/IconPayment.jfif" width="50" height="50"> 
+  <div class="row g-3">
+  <div class="col-md-12">
+  <label for="cnum">Creditcard Number:</label>
+  <input type="text" class="form-control" id="cnum" title="We ask for your credit card number in case of no-show, 20$ will be charged.">
+  </div>
   
-    <label for="inputZip" class="form-label">Zip</label>
-    <input type="text" class="form-control" id="inputZip">
+  <div class="col-md-4">
+  <label for="expdate">Exp Date:</label>
+  <input type="text" class="form-control" id="expdate">
   </div>
-  <div class="col-12">
+  
+  <div class="col-md-4">
+  <label for="cvv">cvv:</label>
+  <input type="text" class="form-control" id="cvv">
+  </div>
+  
+  <div class="col-md-4">
+  <label for="pstcode">Postal Code:</label>
+  <input type="text" class="form-control" id="pstcode">
+</div>
+</div>
+  
     
-  </div>
-  -->
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary">Save changes</button>
+                    <button type="button" class="btn btn-primary" id="bookBtn" >Book</button>
+					<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                 </div>
             </div>
         </div>
     </div>
 
-    <!-- Cards are quite useful when building a website. They are a useful way to organize information.
-    They can be organized using a CSS grid or other layout options.
-    https://getbootstrap.com/docs/5.0/components/card/
-    -->
+    
 
-    <h1>Meet the Physicians!</h1>
+    <h1><img src="images/IconDoc.jfif" width="75" height="75"> The Doctors!</h1>
     <div class="row justify-content-around">
         <div class="card" style="width: 18rem;">
             <img src="images/doctor.jpg" class="card-img-top" alt="...">
             <div class="card-body">
-                <p class="card-text">Here is some filler text, in here you can describe your doctor</p>
+                <p class="card-text">Jane is a experianced family doctor and a graduate from the University of Ottawa</p>
             </div>
         </div>
         <div class="card" style="width: 18rem;">
-            <img src="images/doctor.jpg" class="card-img-top" alt="...">
+            <img src="images/doc2.jpg" class="card-img-top" alt="...">
             <div class="card-body">
-                <p class="card-text">Here is some filler text, in here you can describe your doctor</p>
+                <p class="card-text">Smith is a ex surgeon and a graduate from the University of Toronto</p>
             </div>
         </div>
 		<div class="card" style="width: 18rem;">
-            <img src="images/doctor.jpg" class="card-img-top" alt="...">
+            <img src="images/doc3.jpg" class="card-img-top" alt="...">
             <div class="card-body">
-                <p class="card-text">Here is some filler text, in here you can describe your doctor</p>
+                <p class="card-text">Sally is well know for her work on lyme disease and has won the McLaughlin Medal </p>
             </div>
         </div>
     </div>
 
-    <!--
-    We can also use buttons to expand some hidden options
-    https://getbootstrap.com/docs/5.0/components/collapse/
     
-    <h1>More Information</h1>
-
-    <button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
-        Button To Expand Options
-    </button>
-
-    <div class="collapse" id="collapseExample">
-        <div class="card card-body">
-            Here we have some hidden data to avoid cluttering the page with information
-        </div>
-    </div>
-
-    <!-- This example is using what is called an accordian, this is one of three examples
-    https://getbootstrap.com/docs/5.0/components/accordion/
-    
-
-    <div class="accordion accordion-flush" id="accordionFlushExample">
-        <div class="accordion-item">
-            <h2 class="accordion-header" id="flush-headingOne">
-                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne">
-                    Accordion Item #1
-                </button>
-            </h2>
-            <div id="flush-collapseOne" class="accordion-collapse collapse" aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample">
-                <div class="accordion-body">I can put information in this area</div>
-            </div>
-        </div>
-        <div class="accordion-item">
-            <h2 class="accordion-header" id="flush-headingTwo">
-                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseTwo" aria-expanded="false" aria-controls="flush-collapseTwo">
-                    Accordion Item #2
-                </button>
-            </h2>
-            <div id="flush-collapseTwo" class="accordion-collapse collapse" aria-labelledby="flush-headingTwo" data-bs-parent="#accordionFlushExample">
-                <div class="accordion-body">I can put information in this area</div>
-            </div>
-        </div>
-        <div class="accordion-item">
-            <h2 class="accordion-header" id="flush-headingThree">
-                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseThree" aria-expanded="false" aria-controls="flush-collapseThree">
-                    Accordion Item #3
-                </button>
-            </h2>
-            <div id="flush-collapseThree" class="accordion-collapse collapse" aria-labelledby="flush-headingThree" data-bs-parent="#accordionFlushExample">
-                <div class="accordion-body">I can place information in this area</div>
-            </div>
-        </div>
-    </div>
-
-</div>
-<!-- here we input our javascript helper -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous"></script>
 </body>
 </html>
